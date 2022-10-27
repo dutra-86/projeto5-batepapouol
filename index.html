@@ -15,7 +15,7 @@
 <body>
     <header>
         <img class="lg1" src="media/logo 1.png"/>
-        <ion-icon class ="lg1" name="people" onclick="toggle_options()"></ion-icon>
+        <ion-icon class ="lg1 pointer" name="people" onclick="toggle_options()"></ion-icon>
     </header>
 
     <div class="darken hidden_darken hidden" onclick="toggle_options()"></div>
@@ -24,17 +24,14 @@
             Escolha um contato<br>para enviar mensagem:
         </div>
         <ul class="contatos">
-            <li><ion-icon name="people" class="icon"></ion-icon> Todos</li>
-            <li><ion-icon name="person-circle" class="icon"></ion-icon> Cleiton</li>
-            <li><ion-icon name="person-circle" class="icon"></ion-icon> Frúcio</li>
-            <li><ion-icon name="person-circle" class="icon"></ion-icon> Brias</li>
+
         </ul>
         <div class="title t2">
             Escolha a visibilidade:
         </div>
         <ul class="contatos">
-            <li><ion-icon name="lock-open" class="icon"></ion-icon> Público</li>
-            <li><ion-icon name="lock-open" class="icon"></ion-icon> Reservadamente</li>
+            <li class="pointer" onclick="alterar_visibilidade(to, 'private')"><ion-icon name="lock-open" class="icon"></ion-icon> Público<ion-icon name="checkmark" class="check pub123"></ion-icon></li>
+            <li class="pointer" onclick="alterar_visibilidade('Todos', 'public')"><ion-icon name="lock-closed" class="icon"></ion-icon> Reservadamente<ion-icon name="checkmark" class="check priv123 hidden"></ion-icon></li>
         </ul>
 
     </div>
@@ -46,8 +43,8 @@
     </section>
 
     <footer>
-        <input type="input" class="lg1 txt_input" placeholder="Escreva aqui..." name="name" id="name"></textarea>
-        <ion-icon class="lg1" name="paper-plane-outline"></ion-icon>
+        <input type="input" class="lg1 txt_input" placeholder="Escreva aqui..." name="name" id="txt_box">
+        <ion-icon class="lg1 pointer" name="paper-plane-outline" onclick="enviar_mensagem()"></ion-icon>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

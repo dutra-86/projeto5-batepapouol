@@ -21,6 +21,9 @@ header{
     margin-left: 22px;
     margin-right: 22px;
 }
+.pointer{
+    cursor: pointer;
+}
 footer{
     z-index: 8;
     background-color: white;
@@ -30,7 +33,6 @@ footer{
     width: 100%;
     bottom: 0px;
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
 }
@@ -75,6 +77,10 @@ footer{
 .icon{
     font-size: 24px;
 }
+.check{
+    color: #28BB25;
+    font-size: 24px;
+}
 .hidden_options{
     right: -300px;
     transition: all .8s;
@@ -89,7 +95,7 @@ footer{
 .txt_input{
     font-style: italic;
     height: 30px;
-    min-width: 145px;
+    width: 200px;
     border: none;
     display: block;
     font-size: 1.3rem;
