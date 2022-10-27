@@ -5,6 +5,12 @@ body{
     background-color: #f3f3f3;
     height: 100%;
 }
+.users_check{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-right: 15px;
+}
 .tela_inicial{
     position: fixed;
     height: 100%;

@@ -35,8 +35,23 @@
             Escolha a visibilidade:
         </div>
         <ul class="contatos">
-            <li class="pointer" onclick="alterar_visibilidade(to, 'private')"><ion-icon name="lock-open" class="icon"></ion-icon> Público<ion-icon name="checkmark" class="check pub123"></ion-icon></li>
-            <li class="pointer" onclick="alterar_visibilidade('Todos', 'public')"><ion-icon name="lock-closed" class="icon"></ion-icon> Reservadamente<ion-icon name="checkmark" class="check priv123 hidden"></ion-icon></li>
+
+            <li class="pointer users_check" onclick="alterar_visibilidade(to, 'private')">
+                <div>
+                    <ion-icon name="lock-open" class="icon"></ion-icon> Público
+                </div>
+                    <ion-icon name="checkmark" class="check pub123"></ion-icon>
+                
+            </li>
+
+            <li class="pointer users_check" onclick="alterar_visibilidade('Todos', 'public')">
+                <div>
+                    <ion-icon name="lock-closed" class="icon"></ion-icon> Reservadamente
+                </div>
+                    <ion-icon name="checkmark" class="check priv123 hidden"></ion-icon>
+                
+            </li>
+
         </ul>
 
     </div>

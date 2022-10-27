@@ -31,6 +31,13 @@ function ativo(){
 }
 
 function uptade_messages(){
+    
+    document.getElementById('txt_box').onkeydown = function(e){
+        if(e.keyCode == 13){
+          enviar_mensagem();
+        }
+     };
+
     var mensagens = axios.get('https://mock-api.driven.com.br/api/v6/uol/messages');
     mensagens.then(load);
     mensagens.catch(load_error);
@@ -89,16 +96,23 @@ function uptade_participants(){
     function uptd(content){
         users_online = content.data;
         document.querySelector(".contatos").innerHTML = `
-        <li class="pointer" onclick="selecionar_todos(${users_online.length})">
+        <li class="pointer users_check" onclick="selecionar_todos(${users_online.length})">
+        <div>
         <ion-icon name="people" class="icon"></ion-icon> Todos
-        <ion-icon name="checkmark" class="check Todos"></ion-icon></li>`
+
+        </div>
+        <ion-icon name="checkmark" class="check Todos"></ion-icon>
+        
+        </li>`
 
         for (let i = 0; i<users_online.length; i++){
             document.querySelector(".contatos").innerHTML += `
-            <li class="pointer" onclick="change_dm('${users_online[i].name}', ${users_online.length})">
+            <li class="pointer users_check" onclick="change_dm('${users_online[i].name}', ${users_online.length})">
+            <div>
             <ion-icon name="person-circle" class="icon">
             </ion-icon>${users_online[i].name}
-            <ion-icon name="checkmark" class="check checkcontact ${users_online[i].name} hidden"></ion-icon>
+            </div>
+            <ion-icon name="checkmark" class="check checkcontact user_${users_online[i].name.replace(/\s/g, '')} hidden"></ion-icon>
             </li>`
         }
         change_dm(to,users_online.length);
@@ -110,7 +124,7 @@ function change_dm(towhom, size){
     for(let i=0; i<size; i++){
         document.querySelectorAll(".checkcontact")[i].classList.add("hidden");
     }
-    document.querySelector("."+towhom).classList.remove("hidden");
+    document.querySelector(".user_"+towhom.replace(/\s/g, '')).classList.remove("hidden");
     if (to != "Todos"){
         document.querySelector(".Todos").classList.add("hidden");
     }
