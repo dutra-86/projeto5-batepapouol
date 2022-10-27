@@ -13,6 +13,11 @@
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+    <div class="tela_inicial">
+        <img class="lg1" src="media/logo 1.png"/>
+        <input type="input" class="digitar_nome" placeholder="Digite seu nome" name="name" id="insert_name">
+        <button class="botao_nome pointer" onclick="entrando()">Entrar</button>
+    </div>
     <header>
         <img class="lg1" src="media/logo 1.png"/>
         <ion-icon class ="lg1 pointer" name="people" onclick="toggle_options()"></ion-icon>
@@ -42,7 +47,7 @@
         </ul>
     </section>
 
-    <footer>
+    <footer class="msgwr">
         <input type="input" class="lg1 txt_input" placeholder="Escreva aqui..." name="name" id="txt_box">
         <ion-icon class="lg1 pointer" name="paper-plane-outline" onclick="enviar_mensagem()"></ion-icon>
     </footer>

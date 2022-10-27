@@ -4,7 +4,7 @@ var type = 'message';
 var participants;
 
 function entrando(){
-    usuario.name = prompt("Insira seu nome: ");
+    usuario.name = document.getElementById("insert_name").value;
     const entrando = axios.post('https://mock-api.driven.com.br/api/v6/uol/participants', usuario);
 
     entrando.then(sucesso);
@@ -12,11 +12,12 @@ function entrando(){
 }
 
 function erro(resposta){
-    alert("Nome de usuário já registrado.");
-    entrando();
+    alert("Nome de usuário inválido ou já registrado.");
+    document.getElementById("insert_name").value = '';
 }
 
 function sucesso(resposta){
+    document.querySelector(".tela_inicial").classList.add("hidden");
     console.log(resposta.data);
     setInterval(ativo, 5000);
     uptade_messages();
@@ -45,7 +46,7 @@ function load(messages){
                 <span class="time">(${mensagens[i].time})</span>
                 <span class="from">${mensagens[i].from}</span>
                 <span class="text">${mensagens[i].text}</span>
-            </li>`
+                </li>`
                 break
             case "message":
                 document.querySelector(".messages").innerHTML += `<li class="msg message">
@@ -54,16 +55,20 @@ function load(messages){
                 para
                 <span class="to">${mensagens[i].to}</span>:
                 <span class="text">${mensagens[i].text}
-            </li>`
+                </li>`
                 break
             case "private_message":
-                document.querySelector(".messages").innerHTML += `<li class="msg private_message">
-                <span class="time">(${mensagens[i].time})</span>
-                <span class="from">${mensagens[i].from}</span>
-                reservadamente para
-                <span class="to">${mensagens[i].to}</span>:
-                <span class="text">${mensagens[i].text}</span>
-            </li>`
+                if (mensagens[i].to == usuario.name || mensagens[i].from == usuario.name){
+                    document.querySelector(".messages").innerHTML += `<li class="msg private_message">
+                    <span class="time">(${mensagens[i].time})</span>
+                    <span class="from">${mensagens[i].from}</span>
+                    reservadamente para
+                    <span class="to">${mensagens[i].to}</span>:
+                    <span class="text">${mensagens[i].text}</span>
+                    </li>`
+                }else{
+                    console.log("DM para outro usuário");
+                }
                 break
             default:
                 console.log("Mensagem inválida");
@@ -106,8 +111,9 @@ function change_dm(towhom, size){
         document.querySelectorAll(".checkcontact")[i].classList.add("hidden");
     }
     document.querySelector("."+towhom).classList.remove("hidden");
-
-    document.querySelector(".Todos").classList.add("hidden");
+    if (to != "Todos"){
+        document.querySelector(".Todos").classList.add("hidden");
+    }
 }
 function selecionar_todos(size){
     to="Todos";
@@ -118,8 +124,6 @@ function selecionar_todos(size){
 
 
 }
-
-entrando();
 
 function toggle_options(){
     if (document.querySelector(".darken").classList.contains("hidden")){
@@ -138,16 +142,35 @@ function toggle_options(){
 function enviar_mensagem(){
     let mensagem = document.getElementById("txt_box").value;
     if (mensagem != ''){
-        msg_obj = {
-            from: usuario.name,
-            to: to,
-            text: mensagem,
-            type: type
+        if (type == 'message'){
+            msg_obj = {
+                from: usuario.name,
+                to: 'Todos',
+                text: mensagem,
+                type: type
+            }
+        }else{
+            msg_obj = {
+                from: usuario.name,
+                to: to,
+                text: mensagem,
+                type: type
+            }
         }
-        axios.post('https://mock-api.driven.com.br/api/v6/uol/messages', msg_obj);
+        let msg = axios.post('https://mock-api.driven.com.br/api/v6/uol/messages', msg_obj);
         console.log(msg_obj);
+        msg.then(uptade_messages);
+        msg.catch(usuario_deslogado);
         mensagem = '';
+
+        document.querySelector(".msgwr").innerHTML = '';
+        document.querySelector(".msgwr").innerHTML = `        <input type="input" class="lg1 txt_input" placeholder="Escreva aqui..." name="name" id="txt_box">
+        <ion-icon class="lg1 pointer" name="paper-plane-outline" onclick="enviar_mensagem()"></ion-icon>`;
     }
+}
+
+function usuario_deslogado(){
+    location.reload();
 }
 
 function alterar_visibilidade(para, visibilidade){

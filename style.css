@@ -5,6 +5,49 @@ body{
     background-color: #f3f3f3;
     height: 100%;
 }
+.tela_inicial{
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    z-index: 11;
+}
+.tela_inicial img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 72px;
+    height: 110px;
+    width: auto;
+}
+.digitar_nome{
+    margin-top: 94px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 54px;
+    width: 261px;
+    border: 1px solid #d7d7d7;
+    border-radius: 4px;
+    text-align: center;
+    color: #aeaeae;
+    font-weight: 400;
+    font-size: 18px;
+}
+.botao_nome{
+    margin-top: 15px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 109px;
+    height: 45px;
+    font-size: 18px;
+    font-weight: 400px;
+    color: #696969;
+    background-color: #E7E7E7;
+    border-radius: 9px;
+    border: none;
+}
 header{
     z-index: 8;
     position: fixed;
