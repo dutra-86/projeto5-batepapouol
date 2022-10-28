@@ -74,7 +74,7 @@ header{
     cursor: pointer;
 }
 footer{
-    z-index: 8;
+    z-index: 7;
     background-color: white;
     position: fixed;
     height: 80px;
@@ -184,4 +184,13 @@ section{
 }
 .spacer{
     height: 26px;
+}
+.enviando_para{
+    z-index: 8;
+    position: fixed;
+    bottom: 5px;
+    left: 22px;
+    font-weight: 300;
+    font-size: 14px;
+    color: #505050;
 }

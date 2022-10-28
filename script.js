@@ -65,7 +65,7 @@ function load(messages){
                 </li>`
                 break
             case "private_message":
-                if (mensagens[i].to == usuario.name || mensagens[i].from == usuario.name){
+                if (mensagens[i].to.replace(/\s/g, '') == usuario.name.replace(/\s/g, '') || mensagens[i].from.replace(/\s/g, '') == usuario.name.replace(/\s/g, '')){
                     document.querySelector(".messages").innerHTML += `<li class="msg private_message">
                     <span class="time">(${mensagens[i].time})</span>
                     <span class="from">${mensagens[i].from}</span>
@@ -120,7 +120,9 @@ function uptade_participants(){
 }
 
 function change_dm(towhom, size){
+    console.log(towhom);
     to=towhom;
+    document.querySelector(".enviando_para").innerHTML = `Enviando para ${to} (reservadamente)`;
     for(let i=0; i<size; i++){
         document.querySelectorAll(".checkcontact")[i].classList.add("hidden");
     }
@@ -193,9 +195,13 @@ function alterar_visibilidade(para, visibilidade){
         document.querySelector(".pub123").classList.remove("hidden");
         document.querySelector(".priv123").classList.add("hidden");
         type = 'message';
+
+        document.querySelector(".enviando_para").classList.add("hidden");
     }else{
         document.querySelector(".pub123").classList.add("hidden");
         document.querySelector(".priv123").classList.remove("hidden");
         type = 'private_message';
+
+        document.querySelector(".enviando_para").classList.remove("hidden");
     }
 }
