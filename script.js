@@ -112,7 +112,7 @@ function uptade_participants(){
             <ion-icon name="person-circle" class="icon">
             </ion-icon>${users_online[i].name}
             </div>
-            <ion-icon name="checkmark" class="check checkcontact user_${users_online[i].name.replace(/\s/g, '')} hidden"></ion-icon>
+            <ion-icon name="checkmark" class="check checkcontact user_${users_online[i].name.replace(/\s/g, '') } hidden"></ion-icon>
             </li>`
         }
         change_dm(to,users_online.length);
