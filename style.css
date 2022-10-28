@@ -94,6 +94,7 @@ footer{
     height: 100%;
     width: 259px;
     transition: all .8s;
+    overflow-y: scroll;
 }
 .darken{
     position: fixed;
