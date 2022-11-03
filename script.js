@@ -49,14 +49,14 @@ function load(messages){
     for(let i=0; i<mensagens.length; i++){
         switch (mensagens[i].type){
             case "status":
-                document.querySelector(".messages").innerHTML += `<li class="msg status">
+                document.querySelector(".messages").innerHTML += `<li class="msg status" data-test="message">
                 <span class="time">(${mensagens[i].time})</span>
                 <span class="from">${mensagens[i].from}</span>
                 <span class="text">${mensagens[i].text}</span>
                 </li>`
                 break
             case "message":
-                document.querySelector(".messages").innerHTML += `<li class="msg message">
+                document.querySelector(".messages").innerHTML += `<li class="msg message" data-test="message">
                 <span class="time">(${mensagens[i].time})</span>
                 <span class="from">${mensagens[i].from}</span>
                 para
@@ -66,7 +66,7 @@ function load(messages){
                 break
             case "private_message":
                 if (mensagens[i].to.replace(/\s/g, '') == usuario.name.replace(/\s/g, '') || mensagens[i].from.replace(/\s/g, '') == usuario.name.replace(/\s/g, '')){
-                    document.querySelector(".messages").innerHTML += `<li class="msg private_message">
+                    document.querySelector(".messages").innerHTML += `<li class="msg private_message" data-test="message">
                     <span class="time">(${mensagens[i].time})</span>
                     <span class="from">${mensagens[i].from}</span>
                     reservadamente para
@@ -96,23 +96,23 @@ function uptade_participants(){
     function uptd(content){
         users_online = content.data;
         document.querySelector(".contatos").innerHTML = `
-        <li class="pointer users_check" onclick="selecionar_todos(${users_online.length})">
+        <li class="pointer users_check" onclick="selecionar_todos(${users_online.length})" data-test="all">
         <div>
         <ion-icon name="people" class="icon"></ion-icon> Todos
 
         </div>
-        <ion-icon name="checkmark" class="check Todos"></ion-icon>
+        <ion-icon name="checkmark" class="check Todos" data-test="check"></ion-icon>
         
         </li>`
 
         for (let i = 0; i<users_online.length; i++){
             document.querySelector(".contatos").innerHTML += `
-            <li class="pointer users_check" onclick="change_dm('${users_online[i].name}', ${users_online.length})">
+            <li class="pointer users_check" onclick="change_dm('${users_online[i].name}', ${users_online.length})" data-test="participant">
             <div>
             <ion-icon name="person-circle" class="icon">
             </ion-icon>${users_online[i].name}
             </div>
-            <ion-icon name="checkmark" class="check checkcontact user_${users_online[i].name.replace(/\s/g, '') } hidden"></ion-icon>
+            <ion-icon name="checkmark" class="check checkcontact user_${users_online[i].name.replace(/\s/g, '') } hidden" data-test="check"></ion-icon>
             </li>`
         }
         change_dm(to,users_online.length);

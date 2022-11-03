@@ -15,12 +15,12 @@
 <body>
     <div class="tela_inicial">
         <img class="lg1" src="media/logo 1.png"/>
-        <input type="input" class="digitar_nome" placeholder="Digite seu nome" name="name" id="insert_name">
-        <button class="botao_nome pointer" onclick="entrando()">Entrar</button>
+        <input type="input" class="digitar_nome" placeholder="Digite seu nome" name="name" id="insert_name"  data-test="input-name">
+        <button class="botao_nome pointer" onclick="entrando()" data-test="send-name">Entrar</button>
     </div>
     <header>
         <img class="lg1" src="media/logo 1.png"/>
-        <ion-icon class ="lg1 pointer" name="people" onclick="toggle_options()"></ion-icon>
+        <ion-icon class ="lg1 pointer" name="people" onclick="toggle_options()" data-test="message"></ion-icon>
     </header>
 
     <div class="darken hidden_darken hidden" onclick="toggle_options()"></div>
@@ -36,7 +36,7 @@
         </div>
         <ul class="contatos">
 
-            <li class="pointer users_check" onclick="alterar_visibilidade(to, 'private')">
+            <li class="pointer users_check" onclick="alterar_visibilidade(to, 'private')" data-test="public">
                 <div>
                     <ion-icon name="lock-open" class="icon"></ion-icon> Público
                 </div>
@@ -44,7 +44,7 @@
                 
             </li>
 
-            <li class="pointer users_check" onclick="alterar_visibilidade('Todos', 'public')">
+            <li class="pointer users_check" onclick="alterar_visibilidade('Todos', 'public')" data-test="private">
                 <div>
                     <ion-icon name="lock-closed" class="icon"></ion-icon> Reservadamente
                 </div>
@@ -63,11 +63,11 @@
     </section>
 
     <footer class="msgwr">
-        <input type="input" class="lg1 txt_input" placeholder="Escreva aqui..." name="name" id="txt_box">
-        <ion-icon class="lg1 pointer" name="paper-plane-outline" onclick="enviar_mensagem()"></ion-icon>
+        <input type="input" class="lg1 txt_input" placeholder="Escreva aqui..." name="name" id="txt_box" data-test="input-message">
+        <ion-icon class="lg1 pointer" name="paper-plane-outline" onclick="enviar_mensagem()" data-test="send-message"></ion-icon>
     </footer>
 
-    <div class="enviando_para hidden"></div>
+    <div class="enviando_para hidden" data-test="recipient"></div>
 
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
